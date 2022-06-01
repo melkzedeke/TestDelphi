@@ -124,7 +124,7 @@ CREATE TABLE `produtos` (
   `Descricao` varchar(45) NOT NULL,
   `PrecodeVenda` varchar(45) NOT NULL,
   PRIMARY KEY (`Codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `produtos`
@@ -134,7 +134,25 @@ CREATE TABLE `produtos` (
 INSERT INTO `produtos` (`Codigo`,`Descricao`,`PrecodeVenda`) VALUES 
  (1,'sabonete','10,56'),
  (2,'pasta de dente','11,70'),
- (3,'Shampoo','22,30');
+ (3,'Shampoo','22,30'),
+ (4,'Arroz ','40,15'),
+ (5,'Feijao','10,52'),
+ (6,'Amendoim','8,25'),
+ (7,'Coca Cola','12,25'),
+ (8,'Pepsi','8,20'),
+ (9,'Detergente','1,50'),
+ (10,'Bombril','2,55'),
+ (11,'Papel Higienico','26,42'),
+ (12,'Caderno','18,32'),
+ (13,'Panela de Pressao','58,25'),
+ (14,'Garrafa de Cafe','30,58'),
+ (15,'Xicara','12,18'),
+ (16,'Pano de Prato','5,58'),
+ (17,'Nescau','8,85'),
+ (18,'Toddy','10,11'),
+ (19,'Iogurte','18,23'),
+ (20,'Margarina','5,51'),
+ (21,'Vassoura','18,69');
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 
 
