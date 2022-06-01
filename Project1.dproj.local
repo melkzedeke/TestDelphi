@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/05/30 22:25:37.000.769,=C:\Users\User\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/05/30 22:26:14.000.546,C:\Users\User\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\User\Documents\Embarcadero\Studio\Projects\Test\Unt_principal.dfm</Transaction>
+    <Transaction>2022/05/30 22:26:14.000.546,C:\Users\User\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\User\Documents\Embarcadero\Studio\Projects\Test\Unt_principal.pas</Transaction>
+    <Transaction>2022/05/30 22:26:17.000.743,C:\Users\User\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\User\Documents\Embarcadero\Studio\Projects\Test\Project1.dproj</Transaction>
+    <Transaction>2022/05/31 07:23:39.000.202,C:\Users\User\Documents\Embarcadero\Studio\Projects\Test\Views\Unt_principal.pas=C:\Users\User\Documents\Embarcadero\Studio\Projects\Test\Unt_principal.pas</Transaction>
+    <Transaction>2022/05/31 07:23:39.000.202,C:\Users\User\Documents\Embarcadero\Studio\Projects\Test\Views\Unt_principal.dfm=C:\Users\User\Documents\Embarcadero\Studio\Projects\Test\Unt_principal.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

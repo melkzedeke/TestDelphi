@@ -1,0 +1,81 @@
+unit Unt_principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Data.DbxSqlite,
+  Data.FMTBcd, Data.DB, Data.SqlExpr, Data.DBXMySQL;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    StringGrid1: TStringGrid;
+    Edit1: TEdit;
+    Button2: TButton;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit4: TEdit;
+    Label4: TLabel;
+    Edit5: TEdit;
+    Label5: TLabel;
+    SQLConnection1: TSQLConnection;
+    SQLQuery1: TSQLQuery;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Edit4KeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Form1.Close;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+ //StringGrid1.Cells[0, 0] := 'Ruim'
+end;
+
+procedure TForm1.Edit4KeyPress(Sender: TObject; var Key: Char);
+begin
+if Key =#13 then
+  begin
+    edit4.Text := 'test';
+    Key := #0;
+    edit5.SetFocus;
+  end
+
+
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  StringGrid1.ColWidths[0] := 50;
+  StringGrid1.Cells[0, 0] := 'Cód.Pro';
+  StringGrid1.ColWidths[1] := 200;
+  StringGrid1.Cells[1, 0] := 'Descrição';
+  StringGrid1.ColWidths[2] := 70;
+  StringGrid1.Cells[2, 0] := 'Qtd';
+  StringGrid1.ColWidths[3] := 100;
+  StringGrid1.Cells[3, 0] := 'Val.Unitario';
+  StringGrid1.ColWidths[4] := 100;
+  StringGrid1.Cells[4, 0] := 'Val.Total';
+
+end;
+
+end.

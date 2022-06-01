@@ -1,0 +1,149 @@
+unit Unt_principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Data.DbxSqlite,
+  Data.FMTBcd, Data.DB, Data.SqlExpr, Data.DBXMySQL, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    StringGrid1: TStringGrid;
+    EdtCodPro: TEdit;
+    Button2: TButton;
+    EdtDescricao: TEdit;
+    EdtValorUnitario: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    EdtCodCli: TEdit;
+    Label4: TLabel;
+    EdtNomeCli: TEdit;
+    Label5: TLabel;
+    FDConnection1: TFDConnection;
+    FDQuery1: TFDQuery;
+    EdtQuantidade: TEdit;
+    Label6: TLabel;
+    EdtValorTotalProduto: TEdit;
+    Label7: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure EdtCodCliKeyPress(Sender: TObject; var Key: Char);
+    procedure EdtCodProKeyPress(Sender: TObject; var Key: Char);
+    procedure EdtQuantidadeKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Form1.Close;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+ //StringGrid1.Cells[0, 0] := 'Ruim'
+end;
+
+procedure TForm1.EdtCodProKeyPress(Sender: TObject; var Key: Char);
+var sql:string;
+begin
+if Key =#13 then
+  begin
+
+    FDQuery1.SQL.Text := 'select * from produtos where Codigo = :Code';
+    FDQuery1.ParamByName('code').AsString :=EdtCodPro.Text;
+    FDQuery1.Open;
+  if(FDQuery1.RowsAffected>0)then
+    begin
+      EdtCodPro.Text := FDQuery1.FieldByName('Codigo').Text;
+      EdtDescricao.Text := FDQuery1.FieldByName('Descricao').Text;
+      EdtValorUnitario.Text := FDQuery1.FieldByName('PrecodeVenda').Text;
+      EdtQuantidade.SetFocus;
+    end
+  else
+    begin
+        MessageDlg('Produto não Encontrado',mtInformation,[mbOk],0);
+        EdtCodPro.Clear;
+        EdtCodPro.Clear;
+        EdtCodPro.SetFocus;
+    end;
+    Key := #0;
+
+  end
+end;
+
+procedure TForm1.EdtQuantidadeKeyPress(Sender: TObject; var Key: Char);
+var V1,V3:Real; V2:integer;
+begin
+if Key =#13 then
+  begin
+    V1 := StrToFloat(EdtValorUnitario.Text);
+    V2 := StrToInt(EdtQuantidade.Text);
+    V3 := V1 * V2;
+    EdtValorTotalProduto.Text := FloatToStr(V3);
+  end
+end;
+
+procedure TForm1.EdtCodCliKeyPress(Sender: TObject; var Key: Char);
+var sql:string;
+begin
+if Key =#13 then
+  begin
+
+    FDQuery1.SQL.Text := 'select * from clientes where Codigo = :Code';
+    FDQuery1.ParamByName('code').AsString :=EdtCodCli.Text;
+    FDQuery1.Open;
+  if(FDQuery1.RowsAffected>0)then
+    begin
+      EdtCodCli.Text := FDQuery1.FieldByName('Codigo').Text;
+      EdtNomeCli.Text := FDQuery1.FieldByName('Nome').Text;
+      EdtCodPro.SetFocus;
+    end
+  else
+    begin
+        MessageDlg('Cliente não Encontrado',mtInformation,[mbOk],0);
+        EdtCodCli.Clear;
+        EdtNomeCli.Clear;
+        EdtCodCli.SetFocus;
+    end;
+    Key := #0;
+
+  end
+
+
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  StringGrid1.ColWidths[0] := 50;
+  StringGrid1.Cells[0, 0] := 'Cód.Pro';
+  StringGrid1.ColWidths[1] := 200;
+  StringGrid1.Cells[1, 0] := 'Descrição';
+  StringGrid1.ColWidths[2] := 70;
+  StringGrid1.Cells[2, 0] := 'Qtd';
+  StringGrid1.ColWidths[3] := 100;
+  StringGrid1.Cells[3, 0] := 'Val.Unitario';
+  StringGrid1.ColWidths[4] := 100;
+  StringGrid1.Cells[4, 0] := 'Val.Total';
+  FDQuery1.SQL.Clear;
+end;
+
+end.
